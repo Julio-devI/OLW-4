@@ -19,6 +19,7 @@
                         ['label' => 'State', 'column' => 'address.state'],
                     ]
                     "
+                        :eager-loading="['user', 'address']"
                         edit="clients.edit"
                         delete="clients.destroy"
                     ></livewire:table>
