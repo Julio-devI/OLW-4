@@ -32,4 +32,10 @@ class Client extends Model
     {
         return $this->hasMany(Sale::class);
     }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
+
 }
