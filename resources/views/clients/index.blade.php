@@ -14,12 +14,13 @@
                         resource="Client"
                         :columns="[
                         ['label' => 'Client', 'column' => 'user.name'],
+                        ['label' => 'Company', 'column' => 'company.name'],
                         ['label' => 'Email','column' => 'user.email'],
                         ['label' => 'City', 'column' => 'address.city'],
                         ['label' => 'State', 'column' => 'address.state'],
                     ]
                     "
-                        :eager-loading="['user', 'address']"
+                        :eager-loading="['user', 'address', 'company']"
                         edit="clients.edit"
                         delete="clients.destroy"
                     ></livewire:table>
