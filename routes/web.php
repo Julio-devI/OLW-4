@@ -7,6 +7,8 @@ use App\Livewire\Dashboard;
 use App\Models\SalesCommission;
 use Illuminate\Support\Facades\Route;
 use OpenAI\Laravel\Facades\OpenAI;
+use App\Livewire\Seller\Index;
+use App\Livewire\Seller\Edit;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/clients', ClientController::class);
     Route::get('/sales', [SaleController::class, 'index']);
 });
+
+Route::get('/sellers', Index::class)->middleware(['auth'])->name('sellers.index');
+Route::get('/sellers/create', Edit::class)->middleware(['auth'])->name('sellers.create');
+Route::get('/sellers/{seller}/edit', Edit::class)->middleware(['auth'])->name('sellers.edit');
 
 require __DIR__.'/auth.php';
