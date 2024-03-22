@@ -24,7 +24,7 @@ class ImpersonateController extends Controller
             abort(403);
         }
 
-        auth()->loginUsingId(User::find(session()->get('impersonate')));
+        auth()->loginUsingId(session()->get('impersonate'));
         session()->remove('impersonate');
         session()->remove('company_id');
 
