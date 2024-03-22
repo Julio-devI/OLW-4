@@ -2,9 +2,20 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use function Pest\Laravel\seed;
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\CompanySeeder;
+
+beforeEach(function() {
+    seed(RoleSeeder::class);
+    seed(CompanySeeder::class);
+});
 
 test('password can be updated', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->state(['role_id' => \App\Enums\RoleEnum::SELLER])
+        ->has(\App\Models\Seller::factory()
+            ->state(['company_id' => \App\Models\Company::first()->id]))
+        ->create();
 
     $response = $this
         ->actingAs($user)
@@ -23,7 +34,10 @@ test('password can be updated', function () {
 });
 
 test('correct password must be provided to update password', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->state(['role_id' => \App\Enums\RoleEnum::SELLER])
+        ->has(\App\Models\Seller::factory()
+            ->state(['company_id' => \App\Models\Company::first()->id]))
+        ->create();
 
     $response = $this
         ->actingAs($user)
