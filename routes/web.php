@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/sales', [SaleController::class, 'index']);
 
     Route::get('/impersonate/{user_id}/login', [ImpersonateController::class, 'impersonate'])->name('impersonate');
+    Route::get('/impersonate/leaveimpersonating', [ImpersonateController::class, 'leaveimpersonating'])->name('leave impersonating');
 });
 
 Route::get('/sellers', Index::class)->middleware(['auth'])->name('sellers.index');
