@@ -15,7 +15,7 @@ class ClientController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(Client::class, 'clients');
+        $this->authorizeResource(Client::class, 'client');
     }
 
     /**
