@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use OpenAI\Laravel\Facades\OpenAI;
 use App\Livewire\Seller\Index;
 use App\Livewire\Seller\Edit;
+use App\Http\Controllers\ImpersonateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/clients', ClientController::class);
     Route::get('/sales', [SaleController::class, 'index']);
+
+    Route::get('/impersonate/{user_id}/login', [ImpersonateController::class, 'impersonate'])->name('impersonate');
 });
 
 Route::get('/sellers', Index::class)->middleware(['auth'])->name('sellers.index');
