@@ -28,15 +28,7 @@ class SellerPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
-    {
-        return $user->role_id === RoleEnum::MANAGER || $user->role_id === RoleEnum::SELLER;
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, Seller $seller): bool
+    public function createOrUpdate(User $user): bool
     {
         return $user->role_id === RoleEnum::MANAGER || $user->role_id === RoleEnum::SELLER;
     }
